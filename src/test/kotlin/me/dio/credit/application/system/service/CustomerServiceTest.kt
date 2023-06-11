@@ -106,4 +106,22 @@ class CustomerServiceTest {
       id = id
     )
   }
+
+// Verifica se o programa é capaz de recuperar corretamente todos os clientes registrados no banco de dados
+    @Test
+    fun `should find all customers`() {
+        // given
+        val fakeCustomer1 = buildCustomerForTest(id = 1L)
+        val fakeCustomer2 = buildCustomerForTest(id = 2L)
+        every { customerRepository.getAllCustomers() } returns listOf(fakeCustomer1, fakeCustomer2)
+
+        // when
+        val result = customerService.getAllCustomers()
+
+        // then
+        verify(exactly = 1) { customerRepository.getAllCustomers() }
+        assertEquals(2, result.size)
+        assertTrue(result.contains(fakeCustomer1))
+        assertTrue(result.contains(fakeCustomer2))
+    }
 }
