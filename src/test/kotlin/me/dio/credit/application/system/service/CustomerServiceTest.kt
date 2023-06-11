@@ -107,7 +107,7 @@ class CustomerServiceTest {
     )
   }
 
-// Verifica se o programa é capaz de recuperar corretamente todos os clientes registrados no banco de dados
+// Verifica se o programa é capaz de recuperar corretamente todos os clientes registrados no banco de dados ("Find all")
     @Test
     fun `should find all customers`() {
         // given
